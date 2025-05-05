@@ -1,12 +1,70 @@
-# React + Vite
+# Password Toggle Component
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a simple React component that provides a password input field with a toggle button to show or hide the entered password.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Allows users to easily toggle the visibility of their password.
+- Implemented using React's `useState` hook for managing the visibility state.
+- Basic styling provided using Tailwind CSS classes for a clean and functional UI.
 
-## Expanding the ESLint configuration
+## Installation
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+1.  Make sure you have Node.js and npm (or yarn) installed on your system.
+2.  If you haven't already, initialize a React project or navigate to your existing project directory.
+3.  Ensure you have Tailwind CSS configured in your project. If not, follow the [Tailwind CSS installation guide](https://tailwindcss.com/docs/installation).
+
+## Usage
+
+1.  Import the `PasswordToggle` component into your React application:
+
+    ```javascript
+    import PasswordToggle from './PasswordToggle'; // Adjust the path if necessary
+    ```
+
+2.  Use the component within your JSX:
+
+    ```javascript
+    function App() {
+      return (
+        <div>
+          <h1>Login Form</h1>
+          <PasswordToggle />
+          {/* Other form elements */}
+          <button>Submit</button>
+        </div>
+      );
+    }
+
+    export default App;
+    ```
+
+## Component Structure
+
+```jsx
+import { useState } from "react";
+
+const PasswordToggle = () => {
+  const [showPassword, setShowPassword] = useState(false);
+
+  return (
+    <div className="flex flex-col gap-3 p-4 border w-80 mx-auto rounded-md">
+      <label className="text-lg font-semibold">Enter Password:</label>
+      <div className="relative">
+        <input
+          type={showPassword ? "text" : "password"}
+          className="border px-3 py-2 w-full rounded-md"
+          placeholder="Enter your password"
+        />
+        <button
+          onClick={() => setShowPassword(!showPassword)}
+          className="absolute right-3 top-3 text-sm text-blue-600"
+        >
+          {showPassword ? "Hide" : "Show"}
+        </button>
+      </div>
+    </div>
+  );
+};
+
+export default PasswordToggle;
